@@ -1,6 +1,6 @@
 <template>
     <div class="app-container" style="width: 900px;margin: 0 auto;">
-        <h1>编辑数据接入数据源</h1>
+        <h1>编辑数据源配置</h1>
         <el-card class="mb20">
             <lean-form :sample-data="inputConfig" :form-data="data" :is-editing="true" :current-type="data.plugin_name" @changeFormData="changeFormData"></lean-form>
         </el-card>
@@ -99,7 +99,11 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.json-editor {
+/*.json-editor {*/
+/*    margin-bottom: 15px;*/
+/*    height: 500px;*/
+/*}*/
+.hot-table {
     margin-bottom: 15px;
     height: 500px;
 }

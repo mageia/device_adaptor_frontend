@@ -7,9 +7,11 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@handsontable/vue": "^4.1.1",
     "axios": "^0.18.0",
     "dayjs": "^1.7.7",
     "element-ui": "^2.4.5",
+    "handsontable": "^7.2.2",
     "jsoneditor": "^5.26.3",
     "jwt-decode": "^2.2.0",
     "vue": "^2.5.17",

@@ -50,7 +50,12 @@ export function getPointMap(id) {
         method: 'get'
     })
 }
-
+export function probePointMap(id) {
+    return fetch({
+        url: '/interface/probePointMap/' + id,
+        method: 'get'
+    })
+}
 export function updatePointMap(id, data) {
     return fetch({
         url: '/interface/pointMap/' + id,

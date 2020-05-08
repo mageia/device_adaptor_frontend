@@ -1,11 +1,11 @@
 <template lang="html">
     <div class="login-container">
-        <div class="login-logo"></div>
+<!--        <div class="login-logo"></div>-->
         <form name="loginForm" class="login-form" novalidate>
-            <div class="login-title">
-                <img style="height: 23px;" src="~@/assets/img/logo-gateway-white.png">
-                <h4>智能网关</h4>
-            </div>
+<!--            <div class="login-title">-->
+<!--                <img style="height: 23px;" src="~@/assets/img/logo-gateway-white.png">-->
+<!--                <h4>登录</h4>-->
+<!--            </div>-->
             <label class="item-input">
                 <input type="text" v-model="loginForm.username" placeholder="用户名" @focus="errorMsg = ''"
                     class="user-login-form" autocomplete="off" required/>
@@ -84,7 +84,6 @@ input::-moz-input-placeholder {
         width: 138px;
         height: 27px;
         margin: 47px 0 0 40px;
-        background: url("/image/logo-leaniot.png") no-repeat center center;
         background-size: contain;
     }
 

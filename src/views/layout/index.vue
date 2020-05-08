@@ -2,7 +2,7 @@
     <div class="app-wrapper" :class="{hideSidebar:isCollapse}" @mouseenter="updateStatus">
         <el-menu class="navbar" mode="horizontal">
             <div class="logo-wrap">
-                <img class="logo" src="@/assets/img/logo-gateway-white.png">
+<!--                <img class="logo" src="@/assets/img/logo-gateway-white.png">-->
                 <!-- <h4 v-if="!isCollapse">华夏天信集团</h4> -->
             </div>
 

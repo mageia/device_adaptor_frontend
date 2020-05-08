@@ -79,8 +79,8 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.json-editor {
-    margin-bottom: 15px;
-    height: 500px;
-}
+/*.json-editor {*/
+/*    margin-bottom: 15px;*/
+/*    height: 500px;*/
+/*}*/
 </style>

@@ -4,7 +4,7 @@ export function loginByUsername(username, password) {
     const data = {
         username,
         password
-    }
+    };
 
     return fetch({
         url: '/interface/auth/login',

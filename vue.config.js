@@ -50,8 +50,8 @@ module.exports = {
         https: false,
         hotOnly: false,
         proxy: {
-            '/interface/*': {
-                target: 'http://192.168.1.225:80',
+            '/*': {
+                target: 'http://localhost:8080',
                 ws: true,
                 changeOrigin: true,
                 pathRewrite: {
