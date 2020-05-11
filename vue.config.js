@@ -1,7 +1,7 @@
 var path = require('path')
 
 module.exports = {
-    baseUrl: '/',
+    publicPath: '/',
     // 输出文件目录
     outputDir: 'dist',
     // eslint 是否保存时检查
@@ -45,8 +45,8 @@ module.exports = {
         stats: {
             color: true
         },
-        host: '0.0.0.0',
-        port: '8080',
+        // host: '0.0.0.0',
+        // port: '8080',
         https: false,
         hotOnly: false,
         proxy: {
@@ -54,9 +54,9 @@ module.exports = {
                 target: 'http://localhost:8080',
                 ws: true,
                 changeOrigin: true,
-                pathRewrite: {
-                    '^/interface': ''
-                }
+                // pathRewrite: {
+                //     '^/interface': ''
+                // }
             }
         },
         before: app => {}

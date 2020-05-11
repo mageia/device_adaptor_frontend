@@ -2,10 +2,10 @@
     <div class="login-container">
 <!--        <div class="login-logo"></div>-->
         <form name="loginForm" class="login-form" novalidate>
-<!--            <div class="login-title">-->
+            <div class="login-title">
 <!--                <img style="height: 23px;" src="~@/assets/img/logo-gateway-white.png">-->
-<!--                <h4>登录</h4>-->
-<!--            </div>-->
+                <h4>登录</h4>
+            </div>
             <label class="item-input">
                 <input type="text" v-model="loginForm.username" placeholder="用户名" @focus="errorMsg = ''"
                     class="user-login-form" autocomplete="off" required/>
