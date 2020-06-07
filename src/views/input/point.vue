@@ -1,17 +1,39 @@
 <template>
-    <div class="app-container" style="width: 900px;margin: 0 auto;">
-        <h1>编辑点表</h1>
+    <div class="app-container" style="margin: 0 auto;" data-app="true">
+
         <el-card class="mb20">
-            <el-form :label-position="'left'" label-width="80px" :model="form">
-                <el-form-item label="点表地址">
-                    <el-input v-model="form.point_map_path"></el-input>
-                </el-form-item>
-            </el-form>
-            <el-row>
-                <h4>点表详情</h4>
-<!--                <el-button type="primary" @click.native="probeData">检测点表</el-button>-->
-            </el-row>
-            <json-editor :data="currentJson" :height="500" @onChange="changeData"></json-editor>
+            <!--            <el-form :label-position="'left'" label-width="80px" :model="form">-->
+            <!--                <el-form-item label="点表地址">-->
+            <!--                    <el-input v-model="form.point_map_path"></el-input>-->
+            <!--                </el-form-item>-->
+            <!--            </el-form>-->
+            <!--            <el-row>-->
+            <!--                <h4>点表详情</h4>-->
+            <!--                <el-button type="primary" @click.native="probeData">检测点表</el-button>-->
+            <!--            </el-row>-->
+            <v-card-title>
+                <h1>点表详情</h1>
+                <v-spacer></v-spacer>
+                <v-text-field
+                        v-model="search"
+                        append-icon="mdi-magnify"
+                        label="Search"
+                        single-line
+                        hide-details
+                ></v-text-field>
+            </v-card-title>
+            <v-data-table
+                    :headers="headers"
+                    :items="values"
+                    item-key="address"
+                    :search="search"
+                    show-select
+                    :footer-props="{
+                    'items-per-page-options': [10, 20, 50, -1]
+                  }"
+            >
+            </v-data-table>
+<!--            <json-editor :data="currentJson" :height="500" @onChange="changeData"></json-editor>-->
         </el-card>
         <el-button class="pull-right" type="primary" size="small" @click="updateDataSource()">保存</el-button>
         <el-button class="pull-right" type="default" size="small" @click="jumpTo()" style="margin-right:20px;">返回上一页
@@ -29,7 +51,16 @@
       return {
         id: "",
         form: {},
-        currentJson: {}
+        currentJson: {},
+
+        page: 1,
+        pageCount: 0,
+        itemsPerPage: 2,
+        search: '',
+        pagination: {},
+        selected: [],
+        headers: [],
+        values: [],
       };
     },
     computed: {
@@ -49,9 +80,14 @@
         //     }
         // });
         this.form = data;
-        this.currentJson = data.point_map_content
-          ? data.point_map_content
-          : {};
+        this.currentJson = data.point_map_content || {};
+
+        this.headers = data.headers.map(h => {
+          return {text: h, value: h}
+        });
+        Object.keys(data.point_map_content).forEach(k => {
+          this.values.push(data.point_map_content[k]);
+        })
       },
 
       async probeData() {
@@ -73,7 +109,8 @@
         try {
           let data = {
             point_map_path: this.form.point_map_path,
-            point_map_content: JSON.stringify(this.currentJson)
+            // point_map_content: JSON.stringify(this.currentJson)
+            point_map_content: JSON.stringify(this.values)
           };
           let response = api.updatePointMap(this.id, data);
           // let response = await this.$axios({
