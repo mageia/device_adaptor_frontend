@@ -5,11 +5,12 @@ import Layout from '@/views/layout'
 const Login = _import('login')
 const Home = _import('Home')
 
-const InputIndex = _import('input/index')
-const InputDetail = _import('input/detail')
-const InputPoint = _import('input/point')
-const OutputIndex = _import('output/index')
-const OutputDetail = _import('output/detail')
+const InputIndex = _import('input/index');
+const InputDetail = _import('input/detail');
+const InputPoint = _import('input/point');
+const OutputIndex = _import('output/index');
+const OutputDetail = _import('output/detail');
+const BindingIndex = _import('binding/index');
 
 export const loginRouter = {
     path: '/login',
@@ -63,7 +64,17 @@ export const appRouter = [{
         name: 'output_index',
         component: OutputIndex
     }]
-}]
+},{
+    path: '/binding',
+    name: 'binding',
+    component: Layout,
+    redirect: '/binding/index',
+    children: [{
+        path: 'index',
+        name: 'binding_index',
+        component: BindingIndex
+    }]
+}];
 
 // 继承layout父模版，但不在左侧导航显示的路由
 export const otherRouter = [{

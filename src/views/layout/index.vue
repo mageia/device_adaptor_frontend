@@ -39,6 +39,10 @@
                     <i class="el-icon-download" style="font-size: 20px;"></i>
                     <span slot="title">&nbsp;&nbsp;数据输出</span>
                 </el-menu-item>
+                <el-menu-item index="/binding/index">
+                    <i class="el-icon-sort" style="font-size: 20px;"></i>
+                    <span slot="title">&nbsp;&nbsp;输出绑定</span>
+                </el-menu-item>
             </el-menu>
         </div>
         <div class="main-container">

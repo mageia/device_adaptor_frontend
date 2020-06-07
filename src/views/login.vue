@@ -53,7 +53,7 @@ export default {
                 username: this.loginForm.username,
                 password: this.loginForm.password
             });
-            this.$router.push({ path: "/input/index" });
+            await this.$router.push({path: "/home"});
         }
     }
 };

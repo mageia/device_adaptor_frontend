@@ -1,14 +1,17 @@
 <template>
     <div class="app-container">
         <h2 class="title">
-            <h1>Home</h1>
+            数据绑定
         </h2>
     </div>
 </template>
 
 <script>
-// @ is an alias to /src
-export default {
-    name: "home"
-};
+  export default {
+    name: "index"
+  }
 </script>
+
+<style scoped>
+
+</style>
