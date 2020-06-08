@@ -14,26 +14,24 @@
             <v-card-title>
                 <h1>点表详情</h1>
                 <v-spacer></v-spacer>
-                <v-text-field
-                        v-model="search"
-                        append-icon="mdi-magnify"
-                        label="Search"
-                        single-line
-                        hide-details
-                ></v-text-field>
+                <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details>
+                </v-text-field>
             </v-card-title>
-            <v-data-table
-                    :headers="headers"
-                    :items="values"
-                    item-key="address"
-                    :search="search"
-                    show-select
-                    :footer-props="{
-                    'items-per-page-options': [10, 20, 50, -1]
-                  }"
-            >
+            <v-data-table :headers="headers" :items="values" item-key="address" :search="search" show-select
+                          :footer-props="{'items-per-page-options': [10, 20, 50, -1]}">
+                <!-- Edit name -->
+                <template v-slot:item.name="props">
+                    <v-edit-dialog :return-value.sync="props.item.name" large>
+                        <div>{{ props.item.name }}</div>
+                        <template v-slot:input>
+                            <v-text-field v-model="props.item.name" label="Edit" single-line counter autofocus
+                                          :rules="[max25chars]"></v-text-field>
+                        </template>
+                    </v-edit-dialog>
+                </template>
+
             </v-data-table>
-<!--            <json-editor :data="currentJson" :height="500" @onChange="changeData"></json-editor>-->
+            <!--            <json-editor :data="currentJson" :height="500" @onChange="changeData"></json-editor>-->
         </el-card>
         <el-button class="pull-right" type="primary" size="small" @click="updateDataSource()">保存</el-button>
         <el-button class="pull-right" type="default" size="small" @click="jumpTo()" style="margin-right:20px;">返回上一页
@@ -53,6 +51,7 @@
         form: {},
         currentJson: {},
 
+        max25chars: v => v.length <= 25 || 'Input too long!',
         page: 1,
         pageCount: 0,
         itemsPerPage: 2,
@@ -63,6 +62,7 @@
         values: [],
       };
     },
+
     computed: {
       ...mapGetters(["jwt"])
     },
@@ -106,13 +106,18 @@
       },
 
       async updateDataSource() {
+        console.log(this.selected);
+
         try {
-          let data = {
+          this.values.forEach(v => {
+            this.currentJson[v.point_key] = v
+          });
+          let putBody = {
             point_map_path: this.form.point_map_path,
-            // point_map_content: JSON.stringify(this.currentJson)
-            point_map_content: JSON.stringify(this.values)
+            point_map_content: JSON.stringify(this.currentJson)
           };
-          let response = api.updatePointMap(this.id, data);
+
+          let response = api.updatePointMap(this.id, putBody);
           // let response = await this.$axios({
           //     method: "put",
           //     url: "/pointMap/" + this.id,
@@ -133,7 +138,7 @@
         }
       },
       jumpTo() {
-        this.$router.push("/");
+        this.$router.push("/input/index");
       },
       changeData(json) {
         // console.log(typeof(JSON.parse(json)))
