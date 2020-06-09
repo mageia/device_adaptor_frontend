@@ -21,7 +21,7 @@ service.interceptors.request.use(config => {
     if (config.url !== '/interface/auth/login' && store.getters.token) {
         config.headers['Authorization'] = getToken() // 让每个请求携带token--['Authorization']为自定义key 请根据实际情况自行修改
     }
-    console.log(config)
+    // console.log(config)
     return config
 }, error => {
     // Do something with request error
